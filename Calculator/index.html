@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Lato:100,200,300,400');
+        body{
+            background: #61c39a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Lato;
+            font-weight: 200;
+        }
+        h1,h3{margin: 0}
+        button:focus { outline: none; }
+        .calc{
+            margin-top: 100px;
+            width: 500px;
+            box-shadow: 5px 5px 15px #444;
+        }
+        .calc__display{
+            background: white;
+            text-align: right;
+            padding: 15px;
+            font-weight: 100;
+        }
+        .display__op{
+            color: #999;
+            font-size: 26px;
+            border: 1px solid red;
+        }
+        .display__result{
+            color: #333;
+            font-size: 50px;
+            border: 1px solid red;
+        }
+        .calc__op{
+            background: #2fb7d3;
+            color: white;
+            font-size: 30px;
+            list-style-type: none;
+            padding: 10px;
+            margin: 0;
+
+            display: flex;
+            justify-content: space-around;
+        }
+        .op__btn{
+            cursor: pointer;
+            /*background: red;*/
+            flex-basis: 25%;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .calc__numbers{
+            background: #393535;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .numbers__item{
+            flex-basis: 33%;
+            height: 100px;
+            font-size: 30px;
+            background: #333;
+            border:1px solid #333;
+            color:white;
+            cursor: pointer;
+            color: #999;
+            border: none;
+            background: none;
+        }
+        .numbers__item:hover{
+            background: #666;
+            color: white;
+        }
+        .equals{
+            background: #e6f924;
+            color:#272323;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div class="calc">
+        <div class="calc__display">
+            <h3 class="display__op"></h3>
+            <h1 class="display__result">0</h1>
+        </div>
+        <ul class="calc__op">
+            <li class="op__btn clear" onclick="onClear('C')">C</li>
+            <li class="op__btn divide" onclick="onOperation('/')">/</li>
+            <li class="op__btn multiply" onclick="onOperation('*')">X</li>
+            <li class="op__btn minus" onclick="onOperation('-')">-</li>
+            <li class="op__btn plus" onclick="onOperation('+')">+</li>
+        </ul>
+        <div class="calc__numbers">
+            <button class="numbers__item one" onclick="onNumClicked(1)">1</button>
+            <button class="numbers__item two" onclick="onNumClicked(2)">2</button>
+            <button class="numbers__item three" onclick="onNumClicked(3)">3</button>
+            <button class="numbers__item four" onclick="onNumClicked(4)">4</button>
+            <button class="numbers__item five" onclick="onNumClicked(5)">5</button>
+            <button class="numbers__item six" onclick="onNumClicked(6)">6</button>
+            <button class="numbers__item seven" onclick="onNumClicked(7)">7</button>
+            <button class="numbers__item eight" onclick="onNumClicked(8)">8</button>
+            <button class="numbers__item nine" onclick="onNumClicked(9)">9</button>
+            <button class="numbers__item dot" onclick="onNumClicked('.')">.</button>
+            <button class="numbers__item zero" onclick="onNumClicked(0)">0</button>
+            <button class="numbers__item equals" onclick="calculate('=')">=</button>
+        </div>
+    </div>
+    
+    <script>
+
+        //var $ = function(selector) {
+        //    return document.querySelector(seletor)
+        //}
+
+        //var $ = document.querySelector;
+
+
+        var firstNumber = '';
+        var secondNumber = '';
+        var operation = '';
+        var result = '';
+
+        function onNumClicked(num) {
+            if(!operation){
+                firstNumber  += num;    
+                document.querySelector('.display__op').textContent = firstNumber;
+            }else{
+                secondNumber  += num;    
+                document.querySelector('.display__op').textContent += num;
+            }
+        }   
+
+        function onOperation(op){
+            operation = op;
+            document.querySelector('.display__op').textContent += op;
+        }
+        
+        function calculate(){    
+            result = eval(Number(firstNumber) + operation + Number(secondNumber));
+            document.querySelector('.display__result').textContent = result
+
+        }
+
+        // function onClear() {
+        //     if (onClear == onclick) {
+        //         return Number(firstNumber = '', operation = '', secondNumber = '');
+        //     }
+        //     document.querySelectorAll('.display__result', '.display__op').textContent += '';
+        // }
+
+    </script>
+</body>
+</html>
